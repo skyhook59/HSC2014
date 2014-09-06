@@ -1,0 +1,21 @@
+# m h  dom mon dow   command
+
+# Update scores every 5 minutes on Sundays 1pm - 12am EST
+ */5 13-23 * * 0  /usr/bin/curl http://192.168.3.54/HSC2014/scorefeed/updateScores.php
+
+# Update scores every 5 minutes on Thursdays 8pm - 12am EST
+ */5 20-24 * * 4  /usr/bin/curl http://192.168.3.54/HSC2014/scorefeed/updateScores.php
+
+# Update scores every 5 minutes 8pm Mon - 3am Tues EST
+ */5 20-23 * * 1 /usr/bin/curl http://192.168.3.54/HSC2014/scorefeed/updateScores.php
+ */5 0-3 * * 2 /usr/bin/curl http://192.168.3.54/HSC2014/scorefeed/updateScores.php
+
+# put lines into the DB once at 6:30 EST on Wednesdays
+ 30 18 * * 3 /usr/bin/curl http://192.168.3.54/HSC2014/scrapper/ScrapLines.php >>/var/log/cronrun
+ 31 18 * * 3 /usr/bin/curl http://192.168.3.54/HSC2014/scrapper/setHomeTeam.php >>/var/log/cronrun
+
+# Sends a reminder email on Saturday at Noon.
+ 01 12 * * 6 /usr/bin/curl http://192.168.3.54/HSC2014/mailer.php >>/var/log/cronrun
+
+# Test write to log
+# 25 10 * * * ls -la >>/var/log/cronrun
