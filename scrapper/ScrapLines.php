@@ -46,8 +46,13 @@ foreach ($entries as $entry)
 	$favteam = str_replace("*", "",$cols->item(0)->nodeValue); 
     $dogteam = str_replace("*", "",$cols->item(3)->nodeValue);
     
-    // Make the lines negative
-    $theline = str_replace("+", "-",$cols->item(4)->nodeValue); 
+    // TODO add an IF statement based on the presense of a +
+    // Make the lines negative if there is a +
+      // $theline = str_replace("+", "-",$cols->item(4)->nodeValue); 
+	// Make the lines negative if there is no +    
+    $theline = "-".$cols->item(4)->nodeValue; 
+    
+    
     // Remove the game numbers-- but also removed the 49 from 49ers.
 	$favteam = preg_replace('#[0-9 ]*#', '', $favteam);
 	$dogteam = preg_replace('#[0-9 ]*#', '', $dogteam);

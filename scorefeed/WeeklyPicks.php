@@ -82,7 +82,7 @@ while ($row = mysql_fetch_array($result))
 		}	
 	if ($i == 0)
 		{	
-		echo "<tr data-toggle='collapse' data-target='.".$row['username']."' class='accordion-toggle'><td colspan=5>";
+		echo "<tr data-toggle='collapse' data-target='.".$row['username']."' href='.".$row['username']."' class='accordion-toggle'><td colspan=5>";
 		echo "<div class='panel-heading'><b>".$row['username']."</b></div></a>";
 		echo "</td></tr>";
 		}
@@ -119,11 +119,11 @@ mysql_close($con);
 ?>
 
 <?php 
+echo "<!--";
 echo $thedate."<br />";
 echo date('w', strtotime($thedate))."<br />"; 
 echo $theTime;
-
+echo "-->";
 ?>
-
 </body>
 </html>
