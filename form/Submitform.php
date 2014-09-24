@@ -69,6 +69,17 @@ $game3Line = mysql_result(mysql_query("SELECT CONCAT(favTeam, ' [',`line`,'] ', 
 $game4Line = mysql_result(mysql_query("SELECT CONCAT(favTeam, ' [',`line`,'] ', dogTeam) FROM `Lines` WHERE  week = $weeknumber AND '$pick4' in(favTeam, dogTeam)"),0);
 $game5Line = mysql_result(mysql_query("SELECT CONCAT(favTeam, ' [',`line`,'] ', dogTeam) FROM `Lines` WHERE  week = $weeknumber AND '$pick5' in(favTeam, dogTeam)"),0);
 
+// Check to see if the user id has already submitted picks that week
+
+$existing_picks = mysql_result(mysql_query("SELECT count($id) FROM `Picks` where week = $week AND id = $id"),0);
+
+if ($existing_picks > 0)
+	{
+	echo "You already have submitted picks for this week, or clicked submit too many times... it's a slow ass computer running in my closet, give it a minute! If you feel you've got this message in error please email me (steve@mcph.ee)</h3></i><br />";
+	die('TOO MANY PICKS');
+	} 
+
+// Insert the picks into the database
 
 // Insert Pick 1
 	$sql="INSERT INTO $PicksTable (`id`, `username`, `week`,`gameID`, `pick`)
